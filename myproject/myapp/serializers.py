@@ -19,8 +19,8 @@ class ProductSerializer(serializers.ModelSerializer):
         model= Product
         fields = ['id', 'product_name', 'description', 'added_by']
 
-    def validate_name(self, value):
+    def validate_product_name(self, value):
         if Product.objects.filter(product_name=value).exists():
-            raise serializer.ValidationError("This product is already exists.")
+            raise serializers.ValidationError("This product is already exists.")
         return value
 
